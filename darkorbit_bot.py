@@ -3,11 +3,21 @@
 # NRB SECURITY
 from python_imagesearch.imagesearch import imagesearch
 from pyautogui import leftClick
+import pyautogui
 from time import sleep
 from random import randint
 from os import system
 from PyQt5 import QtWidgets,QtGui
 import sys
+username = "NRB"
+password = "sokaklarr"
+kullanıcı_adı = pyautogui.prompt(text='Kullanıcı adınızı girin', title='NRB SECURİTY' , default='')
+sifre = pyautogui.password(text='Şifrenizi giriniz.', title='NRB SECURİTY' , mask="*")
+if username==kullanıcı_adı and sifre == password:
+    pyautogui.alert(text='Giriş yapıldı', title='NRB SECURİTY', button="Tamam")
+else:
+    pyautogui.alert(text='Hatalı giriş!!', title='NRB SECURİTY', button="Tamam")
+    exit()
 class Pencere(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -120,6 +130,8 @@ class Pencere(QtWidgets.QWidget):
                 leftClick(608, 396)
                 system("python3 darkorbit_bot.py")
                 continue
+
+
 app = QtWidgets.QApplication(sys.argv)
 pencere = Pencere()
 sys.exit(app.exec_())
