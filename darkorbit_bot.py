@@ -9,6 +9,7 @@ from random import randint
 from os import system
 from PyQt5 import QtWidgets,QtGui
 import sys
+uridium = 0
 username = "NRB"
 password = "sokaklarr"
 kullanıcı_adı = pyautogui.prompt(text='Kullanıcı adınızı girin', title='NRB SECURİTY' , default='')
@@ -44,37 +45,89 @@ class Pencere(QtWidgets.QWidget):
         self.show()
 
     def click(self):
+        print("Start")
         while True:
             try:
                 print("Kurulumlar tamamdır")
                 while True:
-
+                    print("Döngü başladı")
                     try:
                         if imagesearch(image="lordakia.PNG")[0] != -1:
-                            leftClick(imagesearch(image="lordakia.PNG"))
+                            print("Lordakia görüldü")
+                            try:
+                                leftClick(imagesearch(image="lordakia.PNG"))
+                                print("Lordaia tıklandı")
+                            except:
+                                leftClick(608, 396)
+                                print("Error 564")
+                                continue
                             leftClick(imagesearch(image="x2.PNG"))
+                            print("X2 tıklandı")
                             leftClick(608, 396)
+                            print("haritaya tıklandı")
                             print("Lordakia öldürüldü.")
-                            sleep(0.5)
+                            uridium =uridium + 2
+                            sleep(1)
+                            print("Toplam {} uridium".format(uridium))
+                            print("Lordaika süreci bitti")
                         elif imagesearch(image="kutu1.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kutu1.PNG"))
+                            print("Kutu görüldü")
+                            try:
+                                leftClick(imagesearch(image="kutu1.PNG"))
+                                print("Kutuya tıklandı")
+                            except:
+                                leftClick(608, 396)
+                                print("Error 3549655")
+                                continue
                             sleep(2)
                             print("Kutu toplandı")
                             sleep(1)
+                            print("Kutu tamamlandı")
                         elif imagesearch(image="streuner.PNG")[0] != -1:
-                            leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 30)
+                            print("Streuner görüldü")
+                            try:
+                                leftClick(imagesearch(image="streuner.PNG")[0],
+                                          imagesearch(image="streuner.PNG")[1] - 30)
+                                print("Streuner tıklandı")
+                            except:
+                                leftClick(608, 396)
+                                print("Error 354155")
+                                continue
                             leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                            print("x2 tıklandı 63")
                             leftClick(608, 396)
+                            print("Haritaya tıklandı 645")
                             print("Streuner öldürüldü")
+                            uridium =uridium + 1
+                            print("Toplam {} uridium".format(uridium))
                             sleep(1)
+                        elif imagesearch(image="pet_health.PNG")[0] != -1:
+                            print("Pet yakıtı tükendi")
+                            try:
+                                leftClick(imagesearch(image="nuy.PNG")[0], imagesearch(image="nuy.PNG")[1])
+                                print("Yakıt alındı")
+                                sleep(0.5)
+                            except:
+                                leftClick(608, 396)
+                                print("Error 355")
+                                continue
+                            leftClick(imagesearch(image="start.PNG")[0],imagesearch(image="start.PNG")[1])
+                            sleep(2)
+                            leftClick(imagesearch(image="pasif.PNG")[0],imagesearch(image="pasif.PNG")[1])
+                            sleep(1)
+                            leftClick(imagesearch(image="otomatik.PNG")[0],imagesearch(image="otomatik.PNG")[1])
+                            print("Pet aktif edildi")
+                            sleep(2)
                         else:
                             leftClick(randint(1075, 1334), randint(519, 673))
+                            print("Rastgele tıklandı")
                             sleep(2)
                     except:
                         leftClick(608, 396)
+                        print("Error 35")
                         continue
             except:
-                print("Sorun Oluştu")
+                print("Sorun Oluştu 500")
                 leftClick(608, 396)
                 continue
 
@@ -90,9 +143,14 @@ class Pencere(QtWidgets.QWidget):
 
                     try:
                         if imagesearch(image="kutu1.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kutu1.PNG"))
-                            sleep(2)
-                            print("Kutu toplandı")
+                            try:
+                                leftClick(imagesearch(image="kutu1.PNG"))
+                                sleep(2)
+                                print("Kutu toplandı")
+                            except:
+                                print("Sorun Oluştu 502")
+                                leftClick(608, 396)
+                                continue
                             sleep(1)
                         else:
                             leftClick(randint(1075, 1334), randint(519, 673))
@@ -101,7 +159,7 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(608, 396)
                         continue
             except:
-                print("Sorun Oluştu")
+                print("Sorun Oluştu 400")
                 leftClick(608, 396)
                 continue
 
@@ -122,7 +180,7 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(608, 396)
                         continue
             except:
-                print("Sorun Oluştu")
+                print("Sorun Oluştu 600")
                 leftClick(608, 396)
                 continue
 
