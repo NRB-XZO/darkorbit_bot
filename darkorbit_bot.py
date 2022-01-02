@@ -47,79 +47,27 @@ class Pencere(QtWidgets.QWidget):
 
     def click(self):
         pyautogui.FAILSAFE = False
-        print("Start")
+        npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
         while True:
             try:
-                print("Kurulumlar tamamdır")
-                while True:
-                    print("Döngü başladı")
-                    try:
-                        if imagesearch(image="lordakia.PNG")[0] != -1:
-                            print("Lordakia görüldü")
-                            try:
-                                leftClick(imagesearch(image="lordakia.PNG"))
-                                print("Lordaia tıklandı")
-                            except:
-                                leftClick(608, 396)
-                                print("Error 564")
-                                continue
-                            leftClick(imagesearch(image="x2.PNG"))
-                            print("X2 tıklandı")
-                            leftClick(608, 396)
-                            print("haritaya tıklandı")
-                            print("Lordakia öldürüldü.")
-                            uridium =uridium + 2
-                            sleep(1)
-                            print("Toplam {} uridium".format(uridium))
-                            print("Lordaika süreci bitti")
-                        elif imagesearch(image="kutu1.PNG")[0] != -1:
-                            print("Kutu görüldü")
-                            try:
-                                leftClick(imagesearch(image="kutu1.PNG"))
-                                print("Kutuya tıklandı")
-                            except:
-                                leftClick(608, 396)
-                                print("Error 3549655")
-                                continue
-                            sleep(2)
-                            print("Kutu toplandı")
-                            sleep(1)
-                            print("Kutu tamamlandı")
-                        elif imagesearch(image="streuner.PNG")[0] != -1:
-                            print("Streuner görüldü")
-                            try:
-                                leftClick(imagesearch(image="streuner.PNG")[0],
-                                          imagesearch(image="streuner.PNG")[1] - 30)
-                                print("Streuner tıklandı")
-                            except:
-                                leftClick(608, 396)
-                                print("Error 354155")
-                                continue
-                            leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                            print("x2 tıklandı 63")
-                            leftClick(608, 396)
-                            print("Haritaya tıklandı 645")
-                            print("Streuner öldürüldü")
-                            uridium =uridium + 1
-                            print("Toplam {} uridium".format(uridium))
-                            sleep(1)
+                for i in npcs:
+                    if imagesearch(image=i)[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image=i)[0], imagesearch(image=i)[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG"[0]), imagesearch(image="x2.PNG")[1])
+                        if i in "devo":
+                            sleep(10)
+                        elif i in "mord":
+                            sleep(5)
                         else:
-                            leftClick(randint(1075, 1334), randint(519, 673))
-                            print("Rastgele tıklandı")
                             sleep(2)
-                    except:
-                        leftClick(608, 396)
-                        print("Error 35")
-                        continue
+                    else:
+                        leftClick(randint(1075, 1334), randint(519, 673))
+                        sleep(2)
             except:
-                print("Sorun Oluştu 500")
-                leftClick(608, 396)
                 continue
 
-            finally:
-                leftClick(608, 396)
-                system("python3 darkorbit_bot.py")
-                continue
     def click2(self):
         pyautogui.FAILSAFE = False
         while True:
