@@ -103,23 +103,6 @@ class Pencere(QtWidgets.QWidget):
                             uridium =uridium + 1
                             print("Toplam {} uridium".format(uridium))
                             sleep(1)
-                        elif imagesearch(image="pet_health.PNG")[0] != -1:
-                            print("Pet yakıtı tükendi")
-                            try:
-                                leftClick(imagesearch(image="nuy.PNG")[0], imagesearch(image="nuy.PNG")[1])
-                                print("Yakıt alındı")
-                                sleep(0.5)
-                            except:
-                                leftClick(608, 396)
-                                print("Error 355")
-                                continue
-                            leftClick(imagesearch(image="start.PNG")[0],imagesearch(image="start.PNG")[1])
-                            sleep(2)
-                            leftClick(imagesearch(image="pasif.PNG")[0],imagesearch(image="pasif.PNG")[1])
-                            sleep(1)
-                            leftClick(imagesearch(image="otomatik.PNG")[0],imagesearch(image="otomatik.PNG")[1])
-                            print("Pet aktif edildi")
-                            sleep(2)
                         else:
                             leftClick(randint(1075, 1334), randint(519, 673))
                             print("Rastgele tıklandı")
