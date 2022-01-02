@@ -9,6 +9,7 @@ from random import randint
 from os import system
 from PyQt5 import QtWidgets,QtGui
 import sys
+pyautogui.FAILSAFE = False
 uridium = 0
 username = "NRB"
 password = "sokaklarr"
@@ -45,6 +46,7 @@ class Pencere(QtWidgets.QWidget):
         self.show()
 
     def click(self):
+        pyautogui.FAILSAFE = False
         print("Start")
         while True:
             try:
@@ -136,6 +138,7 @@ class Pencere(QtWidgets.QWidget):
                 system("python3 darkorbit_bot.py")
                 continue
     def click2(self):
+        pyautogui.FAILSAFE = False
         while True:
             try:
                 print("Kurulumlar tamamdır")
@@ -151,7 +154,7 @@ class Pencere(QtWidgets.QWidget):
                                 print("Sorun Oluştu 502")
                                 leftClick(608, 396)
                                 continue
-                            sleep(1)
+                            sleep(0.5)
                         else:
                             leftClick(randint(1075, 1334), randint(519, 673))
                             sleep(2)
