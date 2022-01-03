@@ -50,21 +50,96 @@ class Pencere(QtWidgets.QWidget):
         npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
         while True:
             try:
-                for i in npcs:
-                    if imagesearch(image=i)[0] != -1:
-                        sleep(0.5)
-                        leftClick(imagesearch(image=i)[0], imagesearch(image=i)[1])
-                        sleep(0.5)
-                        leftClick(imagesearch(image="x2.PNG"[0]), imagesearch(image="x2.PNG")[1])
-                        if i in "devo":
-                            sleep(10)
-                        elif i in "mord":
-                            sleep(5)
-                        else:
-                            sleep(2)
-                    else:
-                        leftClick(randint(1075, 1334), randint(519, 673))
-                        sleep(2)
+                if imagesearch(image="devolarium.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium2.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium3.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium4.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium5.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium6.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="devolarium7.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(20)
+                if imagesearch(image="mordon.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="mordon.PNG")[0],imagesearch(image="mordon.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(5)
+                if imagesearch(image="lordakia.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="lordakia.PNG")[0],imagesearch(image="lordakia.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(2)
+                if imagesearch(image="streuner.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="streuner.PNG")[0],imagesearch(image="streuner.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(5)
+                if imagesearch(image="boss.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="boss.PNG")[0],imagesearch(image="boss.PNG")[1]-10)
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(5)
+                if imagesearch(image="saimon.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="saimon.PNG")[0],imagesearch(image="saimon.PNG")[1]-10)
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(3)
+                if imagesearch(image="kutu1.PNG")[0] != -1:
+                    leftClick(imagesearch(image="kutu1.PNG")[0],imagesearch(image="kutu1.PNG")[1])
+                    sleep(3)
+                if imagesearch(image="boss_mordon.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="boss_mordon.PNG")[0],imagesearch(image="boss_mordon.PNG")[1])
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(6)
+                if imagesearch(image="devolarium_spe.PNG")[0] != -1:
+                    sleep(0.5)
+                    leftClick(imagesearch(image="devolarium_spe.PNG")[0],imagesearch(image="devolarium_spe.PNG")[1]-10)
+                    sleep(0.5)
+                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
+                    sleep(9)
+                else:
+                    leftClick(randint(1075, 1334), randint(519, 673))
+                    sleep(5)
             except:
                 continue
 
