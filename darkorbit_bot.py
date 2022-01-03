@@ -48,98 +48,76 @@ class Pencere(QtWidgets.QWidget):
     def click(self):
         pyautogui.FAILSAFE = False
         npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
+        print("Bot ekranı taramak üzere beklemede")
+        sleep(5)
+        if imagesearch(image="mini_harita.PNG")[0] != -1:
+            print("Mini harita bulundu")
+            coordinat1 = int(imagesearch(image="mini_harita.PNG")[0])
+            coordinat2 = int(imagesearch(image="mini_harita.PNG")[1])
+            reel_coordinat_x1 = coordinat1 + 16
+            reel_coordinat_x2 = coordinat1 + 293
+            reel_coordinat_y1 = coordinat2 + 54
+            reel_coordinat_y2 = coordinat2 + 218
+        else:
+            print("Mini harita algılanmadı")
+            exit()
         while True:
             try:
-                if imagesearch(image="devolarium.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium2.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium3.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium4.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium5.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium6.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="devolarium7.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium.PNG")[0],imagesearch(image="devolarium.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(20)
-                if imagesearch(image="mordon.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="mordon.PNG")[0],imagesearch(image="mordon.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(5)
-                if imagesearch(image="lordakia.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="lordakia.PNG")[0],imagesearch(image="lordakia.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(2)
-                if imagesearch(image="streuner.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="streuner.PNG")[0],imagesearch(image="streuner.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(5)
-                if imagesearch(image="boss.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="boss.PNG")[0],imagesearch(image="boss.PNG")[1]-10)
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(5)
-                if imagesearch(image="saimon.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="saimon.PNG")[0],imagesearch(image="saimon.PNG")[1]-10)
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(3)
-                if imagesearch(image="kutu1.PNG")[0] != -1:
-                    leftClick(imagesearch(image="kutu1.PNG")[0],imagesearch(image="kutu1.PNG")[1])
-                    sleep(3)
-                if imagesearch(image="boss_mordon.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="boss_mordon.PNG")[0],imagesearch(image="boss_mordon.PNG")[1])
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(6)
-                if imagesearch(image="devolarium_spe.PNG")[0] != -1:
-                    sleep(0.5)
-                    leftClick(imagesearch(image="devolarium_spe.PNG")[0],imagesearch(image="devolarium_spe.PNG")[1]-10)
-                    sleep(0.5)
-                    leftClick(imagesearch(image="x2.PNG")[0],imagesearch(image="x2.PNG")[1])
-                    sleep(9)
-                else:
-                    leftClick(randint(1075, 1334), randint(519, 673))
-                    sleep(2)
+                for i in range(1,4):
+                    if i == 3:
+                        leftClick(randint(int(reel_coordinat_x1), int(reel_coordinat_x2)),randint(int(reel_coordinat_y1), int(reel_coordinat_y2)))
+                    if imagesearch(image="mordon.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(5)
+                    if imagesearch(image="tamir.PNG")[0] != -1:
+                        leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
+                        sleep(10)
+                        leftClick(imagesearch(image="mini_harita.PNG")[0] + 260,imagesearch(image="mini_harita.PNG")[1] + 206)
+                        sleep(60)
+                        pyautogui.press("j")
+                    if imagesearch(image="lordakia.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(1)
+                    if imagesearch(image="streuner.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(1)
+                    if imagesearch(image="boss.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(3)
+                    if imagesearch(image="saimon.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(1)
+                    if imagesearch(image="kutu1.PNG")[0] != -1:
+                        leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
+                        sleep(3)
+                    if imagesearch(image="boss_mordon.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(6)
+                    if imagesearch(image="devolarium_spe.PNG")[0] != -1:
+                        sleep(0.5)
+                        leftClick(imagesearch(image="devolarium_spe.PNG")[0],
+                                  imagesearch(image="devolarium_spe.PNG")[1] - 10)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(30)
             except:
                 continue
 
