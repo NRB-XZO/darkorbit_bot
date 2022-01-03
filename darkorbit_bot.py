@@ -139,7 +139,7 @@ class Pencere(QtWidgets.QWidget):
                     sleep(9)
                 else:
                     leftClick(randint(1075, 1334), randint(519, 673))
-                    sleep(5)
+                    sleep(2)
             except:
                 continue
 
