@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # NRB SECURITY
+import keyboard
 from python_imagesearch.imagesearch import imagesearch
 from pyautogui import leftClick
 import pyautogui
@@ -28,7 +29,7 @@ class Pencere(QtWidgets.QWidget):
         self.yazı_alanı = QtWidgets.QLabel("NRB")
         self.buton = QtWidgets.QPushButton("NPC + Kutu")
         self.buton2 = QtWidgets.QPushButton("Sadece kutu")
-        self.buton3 = QtWidgets.QPushButton("Pete toplat")
+        self.buton3 = QtWidgets.QPushButton("Tıklama botu")
         v_box = QtWidgets.QVBoxLayout()
         v_box.addWidget(self.buton)
         v_box.addWidget(self.buton2)
@@ -74,7 +75,7 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
                         sleep(5)
                     if imagesearch(image="tamir.PNG")[0] != -1:
-                        
+
                         leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
                         sleep(10)
                         leftClick(imagesearch(image="mini_harita.PNG")[0] + 260,imagesearch(image="mini_harita.PNG")[1] + 206)
@@ -166,26 +167,29 @@ class Pencere(QtWidgets.QWidget):
     def click3(self):
         while True:
             try:
-                print("Kurulumlar tamamdır")
-                while True:
-
-                    try:
-                        leftClick(randint(1075, 1334), randint(519, 673))
-                        sleep(2)
-                    except:
-                        leftClick(608, 396)
-                        continue
+                if keyboard.is_pressed('ctrl'):
+                    while True:
+                        if imagesearch(image="mordon.PNG")[0] != -1:
+                            leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
+                        if imagesearch(image="lordakia.PNG")[0] != -1:
+                            leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
+                        if imagesearch(image="streuner.PNG")[0] != -1:
+                            leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
+                        if imagesearch(image="boss.PNG")[0] != -1:
+                            leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
+                        if imagesearch(image="saimon.PNG")[0] != -1:
+                            leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
+                        if imagesearch(image="kutu1.PNG")[0] != -1:
+                            leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
+                        if imagesearch(image="boss_mordon.PNG")[0] != -1:
+                            leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
+                        if imagesearch(image="devolarium_spe.PNG")[0] != -1:
+                            leftClick(imagesearch(image="devolarium_spe.PNG")[0],
+                                      imagesearch(image="devolarium_spe.PNG")[1] - 10)
+                        if keyboard.is_pressed('q'):
+                            break
             except:
-                print("Sorun Oluştu 600")
-                leftClick(608, 396)
-                continue
-
-            finally:
-                leftClick(608, 396)
-                system("python3 darkorbit_bot.py")
-                continue
-
-
+                pyautogui.alert("Error")
 app = QtWidgets.QApplication(sys.argv)
 pencere = Pencere()
 sys.exit(app.exec_())
