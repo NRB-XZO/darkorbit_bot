@@ -128,6 +128,9 @@ class Pencere(QtWidgets.QWidget):
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
                         sleep(30)
+                    if keyboard.is_pressed('q'):
+                        print("[+] Out")
+                        break
             except:
                 continue
 
