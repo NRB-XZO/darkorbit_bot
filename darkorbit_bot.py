@@ -128,6 +128,41 @@ class Pencere(QtWidgets.QWidget):
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
                         sleep(30)
+                    if imagesearch(image="kristallin.PNG")[0] != -1:
+                        leftClick(546,468)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="kristallin.PNG")[0], imagesearch(image="kristallin.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(5)
+                    if imagesearch(image="plagued_kristallin.PNG")[0] != -1:
+                        leftClick(546,468)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="plagued_kristallin.PNG")[0], imagesearch(image="plagued_kristallin.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(5)
+                    if imagesearch(image="boss_kristallin.PNG")[0] != -1:
+                        leftClick(546,468)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="boss_kristallin.PNG")[0], imagesearch(image="boss_kristallin.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(10)
+                    if imagesearch(image="kristallon.PNG")[0] != -1:
+                        leftClick(546,468)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="kristallon.PNG")[0], imagesearch(image="kristallon.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(30)
+                    if imagesearch(image="cubikon.PNG")[0] != -1:
+                        leftClick(546,468)
+                        sleep(0.5)
+                        leftClick(imagesearch(image="cubikon.PNG")[0], imagesearch(image="cubikon.PNG")[1])
+                        sleep(0.5)
+                        leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
+                        sleep(30)
                     if keyboard.is_pressed('q'):
                         print("[+] Out")
                         break
