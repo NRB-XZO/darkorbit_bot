@@ -207,6 +207,16 @@ class Pencere(QtWidgets.QWidget):
             try:
                 if keyboard.is_pressed('ctrl'):
                     while True:
+                        if imagesearch(image="cubikon.PNG")[0] != -1:
+                            leftClick(imagesearch(image="cubikon.PNG")[0], imagesearch(image="cubikon.PNG")[1]-10)
+                        if imagesearch(image="kristallon.PNG")[0] != -1:
+                            leftClick(imagesearch(image="kristallon.PNG")[0], imagesearch(image="kristallon.PNG")[1])
+                        if imagesearch(image="boss_kristallin.PNG")[0] != -1:
+                            leftClick(imagesearch(image="boss_kristallin.PNG")[0], imagesearch(image="boss_kristallin.PNG")[1])
+                        if imagesearch(image="plagued_kristallin.PNG")[0] != -1:
+                            leftClick(imagesearch(image="plagued_kristallin.PNG")[0], imagesearch(image="plagued_kristallin.PNG")[1])
+                        if imagesearch(image="kristallin.PNG")[0] != -1:
+                            leftClick(imagesearch(image="kristallin.PNG")[0], imagesearch(image="kristallin.PNG")[1])
                         if imagesearch(image="mordon.PNG")[0] != -1:
                             leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
                         if imagesearch(image="lordakia.PNG")[0] != -1:
