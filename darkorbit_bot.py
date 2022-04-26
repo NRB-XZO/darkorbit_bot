@@ -48,6 +48,7 @@ class Pencere(QtWidgets.QWidget):
 
     def click(self):
         pyautogui.FAILSAFE = False
+        sure1 = int(pyautogui.prompt(text='Küçük npc leri kaç sn de kessin ?', title='NRB SECURİTY' , default=''))
         npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
         print("Bot ekranı taramak üzere beklemede")
         sleep(5)
@@ -64,7 +65,7 @@ class Pencere(QtWidgets.QWidget):
             exit()
         while True:
             try:
-                for i in range(1,20):
+                for i in range(1,40):
                     if i == 3 or 7:
                         leftClick(randint(int(reel_coordinat_x1), int(reel_coordinat_x2)),randint(int(reel_coordinat_y1), int(reel_coordinat_y2)))
                     if imagesearch(image="mordon.PNG")[0] != -1:
@@ -73,7 +74,7 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(5)
+                        sleep(sure1)
                     if imagesearch(image="tamir.PNG")[0] != -1:
 
                         leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
@@ -87,21 +88,21 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(1)
+                        sleep(sure1)
                     if imagesearch(image="streuner.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(0.5)
                         leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(1)
+                        sleep(sure1)
                     if imagesearch(image="boss.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(0.5)
                         leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
                         sleep(0.5)
                         leftClick(imagesearch(image="x2.PNG")[0], imagesearch(image="x2.PNG")[1])
-                        sleep(3)
+                        sleep(3*sure1)
                     if imagesearch(image="saimon.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(0.5)
@@ -112,7 +113,7 @@ class Pencere(QtWidgets.QWidget):
                     if imagesearch(image="kutu1.PNG")[0] != -1:
                         leftClick(546, 468)
                         leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
-                        sleep(3)
+                        sleep(4)
                     if imagesearch(image="boss_mordon.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(0.5)
