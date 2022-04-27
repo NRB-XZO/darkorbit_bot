@@ -51,6 +51,8 @@ class Pencere(QtWidgets.QWidget):
         sure1 = int(pyautogui.prompt(text='Küçük npc leri kaç sn de kessin ?', title='NRB SECURİTY' , default=''))
         npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
         print("Bot ekranı taramak üzere beklemede")
+        if imagesearch(image="portal.PNG")[0] != -1:
+            pyautogui.alert(text="Portal tespit edildi. Gemi patlayınca x2 haritasında kesime devam edilecektir :)",title="NRB SECURİTY",button="Tamam")
         sleep(5)
         if imagesearch(image="mini_harita.PNG")[0] != -1:
             print("Mini harita bulundu")
@@ -79,8 +81,8 @@ class Pencere(QtWidgets.QWidget):
 
                         leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
                         sleep(10)
-                        leftClick(imagesearch(image="mini_harita.PNG")[0] + 260,imagesearch(image="mini_harita.PNG")[1] + 206)
-                        sleep(60)
+                        leftClick(imagesearch(image="portal.PNG")[0],imagesearch(image="portal.PNG")[1])
+                        sleep(100)
                         pyautogui.press("j")
                     if imagesearch(image="lordakia.PNG")[0] != -1:
                         leftClick(546, 468)
