@@ -87,8 +87,6 @@ class Pencere(QtWidgets.QWidget):
                         leftClick(imagesearch(image="portal.PNG")[0]+14, imagesearch(image="portal.PNG")[1]+11)
                         sleep(100)
                         pyautogui.press("j")
-                    if imagesearch(image="exit.PNG")[0] != -1:
-                        leftClick(imagesearch(image="exit.PNG")[0]+2,imagesearch(image="exit.PNG")[1]+6)
                     if imagesearch(image="lordakia.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
