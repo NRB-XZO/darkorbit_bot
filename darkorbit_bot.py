@@ -1,66 +1,122 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# NRB SECURITY
-import keyboard
-from python_imagesearch.imagesearch import imagesearch
-from pyautogui import leftClick
-import pyautogui
-from time import sleep
-from random import randint
-from os import system
-from PyQt5 import QtWidgets,QtGui
 import sys
-pyautogui.FAILSAFE = False
-uridium = 0
-username = "NRB"
-password = "sokaklarr"
-kullanıcı_adı = pyautogui.prompt(text='Kullanıcı adınızı girin', title='NRB SECURİTY' , default='')
-sifre = pyautogui.password(text='Şifrenizi giriniz.', title='NRB SECURİTY' , mask="*")
-if username==kullanıcı_adı and sifre == password:
-    pyautogui.alert(text='Giriş yapıldı', title='NRB SECURİTY', button="Tamam")
-else:
-    pyautogui.alert(text='Hatalı giriş!!', title='NRB SECURİTY', button="Tamam")
-    exit()
-class Pencere(QtWidgets.QWidget):
+from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtCore import Qt
+import pyautogui
+from pyautogui import leftClick
+from python_imagesearch.imagesearch import imagesearch
+from time import sleep, time
+from threading import Thread
+import keyboard
+from random import randint
+
+class LoadingAnimation(QtWidgets.QLabel):
     def __init__(self):
         super().__init__()
-        self.init_ui()
-    def init_ui(self):
-        self.yazı_alanı = QtWidgets.QLabel("NRB")
-        self.buton = QtWidgets.QPushButton("NPC + Kutu")
-        self.buton2 = QtWidgets.QPushButton("Sadece kutu")
-        self.buton3 = QtWidgets.QPushButton("Tıklama botu")
-        self.buton4 = QtWidgets.QPushButton("Test")
-        v_box = QtWidgets.QVBoxLayout()
-        v_box.addWidget(self.buton)
-        v_box.addWidget(self.buton2)
-        v_box.addWidget(self.buton3)
-        v_box.addWidget(self.buton4)
-        v_box.addWidget(self.yazı_alanı)
-        v_box.addStretch()
-        h_box = QtWidgets.QHBoxLayout()
-        h_box.addStretch()
-        h_box.addLayout(v_box)
-        h_box.addStretch()
-        self.setLayout(h_box)
-        self.buton.clicked.connect(self.click)
-        self.buton2.clicked.connect(self.click2)
-        self.buton3.clicked.connect(self.click3)
-        self.buton4.clicked.connect(self.click4)
-        self.show()
+        self.movie = QtGui.QMovie("loading.gif")
+        self.setMovie(self.movie)
+        self.movie.start()
+        self.setAlignment(Qt.AlignCenter)
+        self.setFixedSize(0,0)
 
-    def click(self):
+class DarkOrbitBot(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.loading_animation = LoadingAnimation()
+        self.init_ui()
+
+        self.login_status = False
+        self.start_time = None
+        self.darkorbit_username = None
+        self.darkorbit_password = None
+
+    def init_ui(self):
+        self.setWindowTitle('DarkOrbit Bot')
+        self.setGeometry(100, 100, 400, 200)
+
+        self.username = "NRB"
+        self.password = "sokaklarr"
+
+        self.layout = QtWidgets.QVBoxLayout()
+
+        self.login_button = QtWidgets.QPushButton('Giriş Yap')
+        self.login_button.clicked.connect(self.login)
+        self.layout.addWidget(self.login_button)
+
+        self.hesap_bilgileri_button = QtWidgets.QPushButton('Hesap Bilgileri')
+        self.hesap_bilgileri_button.clicked.connect(self.hesap_bilgileri)
+        self.layout.addWidget(self.hesap_bilgileri_button)
+        self.hesap_bilgileri_button.setEnabled(False)
+
+        self.bot_buttons = QtWidgets.QWidget()
+        self.bot_layout = QtWidgets.QHBoxLayout()
+        self.npc_kutu_button = QtWidgets.QPushButton('Ultra')
+        self.npc_kutu_button.setEnabled(False)
+        self.npc_kutu_button.clicked.connect(self.ultra)
+        self.bot_layout.addWidget(self.npc_kutu_button)
+        self.sadece_kutu_button = QtWidgets.QPushButton('Box')
+        self.sadece_kutu_button.setEnabled(False)
+        self.bot_layout.addWidget(self.sadece_kutu_button)
+        self.tiklama_bot_button = QtWidgets.QPushButton('Click')
+        self.tiklama_bot_button.setEnabled(False)
+        self.bot_layout.addWidget(self.tiklama_bot_button)
+        self.test_button = QtWidgets.QPushButton('Test')
+        self.test_button.setEnabled(False)
+        self.bot_layout.addWidget(self.test_button)
+        self.bot_buttons.setLayout(self.bot_layout)
+        self.layout.addWidget(self.bot_buttons)
+
+        self.info_label = QtWidgets.QLabel('')
+        self.layout.addWidget(self.info_label)
+
+        self.timer_label = QtWidgets.QLabel('Çalışma Süresi: 00:00:00')
+        self.layout.addWidget(self.timer_label)
+
+        self.layout.addWidget(self.loading_animation)
+
+        self.setLayout(self.layout)
+
+    def login(self):
+        self.loading_animation.show()
+
+        kullanıcı_adı, ok = QtWidgets.QInputDialog.getText(self, 'Giriş', 'Kullanıcı adınızı girin:')
+        sifre, ok = QtWidgets.QInputDialog.getText(self, 'Giriş', 'Şifrenizi girin:', QtWidgets.QLineEdit.Password)
+
+        if kullanıcı_adı == self.username and sifre == self.password:
+            self.info_label.setText('Giriş yapıldı')
+            self.login_status = True
+            self.hesap_bilgileri_button.setEnabled(True)
+            self.npc_kutu_button.setEnabled(True)
+            self.sadece_kutu_button.setEnabled(True)
+            self.tiklama_bot_button.setEnabled(True)
+            self.test_button.setEnabled(True)
+
+            self.start_time = time()
+        else:
+            self.info_label.setText('Hatalı giriş!!')
+
+        self.loading_animation.hide()
+
+    def hesap_bilgileri(self):
+        kullanıcı_adı, ok = QtWidgets.QInputDialog.getText(self, 'Hesap Bilgileri', 'Kullanıcı adınızı girin:')
+        sifre, ok = QtWidgets.QInputDialog.getText(self, 'Hesap Bilgileri', 'Şifrenizi girin:', QtWidgets.QLineEdit.Password)
+
+        self.darkorbit_username = kullanıcı_adı
+        self.darkorbit_password = sifre
+
+    def ultra(self):
         pyautogui.FAILSAFE = False
-        sure1 = int(pyautogui.prompt(text='Küçük npc leri kaç sn de kessin ?', title='NRB SECURİTY' , default=''))
-        npcs = ["devolarium.PNG","devolarium2.PNG","devolarium3.PNG","devolarium4.PNG","devolarium5.PNG","devolarium6.PNG","devolarium7.PNG","mordon.PNG","lordakia.PNG","streuner.PNG"]
+        sure1 = int(pyautogui.prompt(text='Küçük npc leri kaç sn de kessin ?', title='NRB SECURİTY', default=''))
+        npcs = ["devolarium.PNG", "devolarium2.PNG", "devolarium3.PNG", "devolarium4.PNG", "devolarium5.PNG",
+                "devolarium6.PNG", "devolarium7.PNG", "mordon.PNG", "lordakia.PNG", "streuner.PNG"]
         print("Bot ekranı taramak üzere beklemede")
-        if imagesearch(image="portal.PNG")[0] != -1:
-            pyautogui.alert(text="Portal tespit edildi. Gemi patlayınca x2 haritasında kesime devam edilecektir :)",title="NRB SECURİTY",button="Tamam")
+        if imagesearch("portal.PNG")[0] != -1:
+            pyautogui.alert(text="Portal tespit edildi. Gemi patlayınca x2 haritasında kesime devam edilecektir :)",
+                            title="NRB SECURİTY", button="Tamam")
         sleep(5)
-        if imagesearch(image="mini_harita.PNG")[0] != -1:
+        if imagesearch("mini_harita.PNG")[0] != -1:
             print("Mini harita bulundu")
-            coordinat1 = int(imagesearch(image="mini_harita.PNG")[0])
-            coordinat2 = int(imagesearch(image="mini_harita.PNG")[1])
+            coordinat1 = int(imagesearch("mini_harita.PNG")[0])
+            coordinat2 = int(imagesearch("mini_harita.PNG")[1])
             reel_coordinat_x1 = coordinat1 + 16
             reel_coordinat_x2 = coordinat1 + 293
             reel_coordinat_y1 = coordinat2 + 54
@@ -70,103 +126,88 @@ class Pencere(QtWidgets.QWidget):
             exit()
         while True:
             try:
-                for i in range(1,40):
-                    if i == 3 or 7:
-                        leftClick(randint(int(reel_coordinat_x1), int(reel_coordinat_x2)),randint(int(reel_coordinat_y1), int(reel_coordinat_y2)))
-                    if imagesearch(image="mordon.PNG")[0] != -1:
-                        leftClick(546,468)
+                for i in range(1, 40):
+                    if i in (3, 7):
+                        leftClick(randint(int(reel_coordinat_x1), int(reel_coordinat_x2)),
+                                  randint(int(reel_coordinat_y1), int(reel_coordinat_y2)))
+                    if imagesearch("mordon.PNG")[0] != -1:
+                        leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
+                        leftClick(imagesearch("mordon.PNG")[0], imagesearch("mordon.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(sure1)
-                    if imagesearch(image="tamir.PNG")[0] != -1:
-
-                        leftClick(imagesearch(image="tamir.PNG")[0],imagesearch(image="tamir.PNG")[1])
+                    if imagesearch("tamir.PNG")[0] != -1:
+                        leftClick(imagesearch("tamir.PNG")[0], imagesearch("tamir.PNG")[1])
                         sleep(10)
-                        leftClick(imagesearch(image="portal.PNG")[0]+14, imagesearch(image="portal.PNG")[1]+11)
+                        leftClick(imagesearch("portal.PNG")[0] + 14, imagesearch("portal.PNG")[1] + 11)
                         sleep(100)
                         pyautogui.press("j")
-                    if imagesearch(image="lordakia.PNG")[0] != -1:
+                    if imagesearch("lordakia.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
+                        leftClick(imagesearch("lordakia.PNG")[0], imagesearch("lordakia.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(sure1)
-                    if imagesearch(image="streuner.PNG")[0] != -1:
+                    if imagesearch("streuner.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
+                        leftClick(imagesearch("streuner.PNG")[0], imagesearch("streuner.PNG")[1] - 10)
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(sure1)
-                    if imagesearch(image="boss.PNG")[0] != -1:
+                    if imagesearch("boss.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
+                        leftClick(imagesearch("boss.PNG")[0], imagesearch("boss.PNG")[1] - 10)
                         sleep(0.5)
                         pyautogui.press("ctrl")
-                        sleep(3*sure1)
-                    if imagesearch(image="saimon.PNG")[0] != -1:
+                        sleep(3 * sure1)
+                    if imagesearch("saimon.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
+                        leftClick(imagesearch("saimon.PNG")[0], imagesearch("saimon.PNG")[1] - 10)
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(1)
-                    if imagesearch(image="kutu1.PNG")[0] != -1:
+                    if imagesearch("kutu1.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(2)
-                        leftClick(imagesearch(image="kutu1.PNG")[0]+25, imagesearch(image="kutu1.PNG")[1])
+                        leftClick(imagesearch("kutu1.PNG")[0] + 25, imagesearch("kutu1.PNG")[1])
                         sleep(4)
-                    if imagesearch(image="boss_mordon.PNG")[0] != -1:
+                    if imagesearch("kristallin.PNG")[0] != -1:
                         leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
-                        sleep(0.5)
-                        pyautogui.press("ctrl")
-                        sleep(6)
-                    if imagesearch(image="devolarium_spe.PNG")[0] != -1:
-                        leftClick(546, 468)
-                        sleep(1)
-                        leftClick(imagesearch(image="devolarium_spe.PNG")[0],
-                                  imagesearch(image="devolarium_spe.PNG")[1] - 10)
-                        sleep(0.5)
-                        pyautogui.press("ctrl")
-                        sleep(30)
-                    if imagesearch(image="kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
-                        sleep(1)
-                        leftClick(imagesearch(image="kristallin.PNG")[0], imagesearch(image="kristallin.PNG")[1])
+                        leftClick(imagesearch("kristallin.PNG")[0], imagesearch("kristallin.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(5)
-                    if imagesearch(image="plagued_kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
+                    if imagesearch("plagued_kristallin.PNG")[0] != -1:
+                        leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="plagued_kristallin.PNG")[0], imagesearch(image="plagued_kristallin.PNG")[1])
+                        leftClick(imagesearch("plagued_kristallin.PNG")[0], imagesearch("plagued_kristallin.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(5)
-                    if imagesearch(image="boss_kristallin.PNG")[0] != -1:
-                        leftClick(546,468)
+                    if imagesearch("boss_kristallin.PNG")[0] != -1:
+                        leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="boss_kristallin.PNG")[0], imagesearch(image="boss_kristallin.PNG")[1])
+                        leftClick(imagesearch("boss_kristallin.PNG")[0], imagesearch("boss_kristallin.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(10)
-                    if imagesearch(image="kristallon.PNG")[0] != -1:
-                        leftClick(546,468)
+                    if imagesearch("kristallon.PNG")[0] != -1:
+                        leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="kristallon.PNG")[0], imagesearch(image="kristallon.PNG")[1])
+                        leftClick(imagesearch("kristallon.PNG")[0], imagesearch("kristallon.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(30)
-                    if imagesearch(image="cubikon.PNG")[0] != -1:
-                        leftClick(546,468)
+                    if imagesearch("cubikon.PNG")[0] != -1:
+                        leftClick(546, 468)
                         sleep(1)
-                        leftClick(imagesearch(image="cubikon.PNG")[0], imagesearch(image="cubikon.PNG")[1])
+                        leftClick(imagesearch("cubikon.PNG")[0], imagesearch("cubikon.PNG")[1])
                         sleep(0.5)
                         pyautogui.press("ctrl")
                         sleep(30)
@@ -176,83 +217,23 @@ class Pencere(QtWidgets.QWidget):
             except:
                 continue
 
-    def click2(self):
-        pyautogui.FAILSAFE = False
+    def update_timer(self):
         while True:
-            try:
-                print("Kurulumlar tamamdır")
-                while True:
+            if self.start_time:
+                elapsed_time = time() - self.start_time
+                hours, remainder = divmod(elapsed_time, 3600)
+                minutes, seconds = divmod(remainder, 60)
+                self.timer_label.setText(f'Çalışma Süresi: {int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}')
+                sleep(1)
 
-                    try:
-                        if imagesearch(image="kutu1.PNG")[0] != -1:
-                            try:
-                                leftClick(imagesearch(image="kutu1.PNG"))
-                                sleep(2)
-                                print("Kutu toplandı")
-                            except:
-                                print("Sorun Oluştu 502")
-                                leftClick(608, 396)
-                                continue
-                            sleep(0.5)
-                        else:
-                            leftClick(randint(1075, 1334), randint(519, 673))
-                            sleep(2)
-                    except:
-                        leftClick(608, 396)
-                        continue
-            except:
-                print("Sorun Oluştu 400")
-                leftClick(608, 396)
-                continue
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    darkorbit_bot = DarkOrbitBot()
+    darkorbit_bot.show()
+    timer_thread = Thread(target=darkorbit_bot.update_timer)
+    timer_thread.daemon = True
+    timer_thread.start()
+    sys.exit(app.exec_())
 
-            finally:
-                leftClick(608, 396)
-                system("python3 darkorbit_bot.py")
-                continue
-    def click3(self):
-        while True:
-            try:
-                if keyboard.is_pressed('ctrl'):
-                    while True:
-                        if imagesearch(image="cubikon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="cubikon.PNG")[0], imagesearch(image="cubikon.PNG")[1]-10)
-                        if imagesearch(image="kristallon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kristallon.PNG")[0], imagesearch(image="kristallon.PNG")[1])
-                        if imagesearch(image="boss_kristallin.PNG")[0] != -1:
-                            leftClick(imagesearch(image="boss_kristallin.PNG")[0], imagesearch(image="boss_kristallin.PNG")[1])
-                        if imagesearch(image="plagued_kristallin.PNG")[0] != -1:
-                            leftClick(imagesearch(image="plagued_kristallin.PNG")[0], imagesearch(image="plagued_kristallin.PNG")[1])
-                        if imagesearch(image="kristallin.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kristallin.PNG")[0], imagesearch(image="kristallin.PNG")[1])
-                        if imagesearch(image="mordon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="mordon.PNG")[0], imagesearch(image="mordon.PNG")[1])
-                        if imagesearch(image="lordakia.PNG")[0] != -1:
-                            leftClick(imagesearch(image="lordakia.PNG")[0], imagesearch(image="lordakia.PNG")[1])
-                        if imagesearch(image="streuner.PNG")[0] != -1:
-                            leftClick(imagesearch(image="streuner.PNG")[0], imagesearch(image="streuner.PNG")[1] - 10)
-                        if imagesearch(image="boss.PNG")[0] != -1:
-                            leftClick(imagesearch(image="boss.PNG")[0], imagesearch(image="boss.PNG")[1] - 10)
-                        if imagesearch(image="saimon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="saimon.PNG")[0], imagesearch(image="saimon.PNG")[1] - 10)
-                        if imagesearch(image="kutu1.PNG")[0] != -1:
-                            leftClick(imagesearch(image="kutu1.PNG")[0], imagesearch(image="kutu1.PNG")[1])
-                        if imagesearch(image="boss_mordon.PNG")[0] != -1:
-                            leftClick(imagesearch(image="boss_mordon.PNG")[0], imagesearch(image="boss_mordon.PNG")[1])
-                        if imagesearch(image="devolarium_spe.PNG")[0] != -1:
-                            leftClick(imagesearch(image="devolarium_spe.PNG")[0],
-                                      imagesearch(image="devolarium_spe.PNG")[1] - 10)
-                        if keyboard.is_pressed('q'):
-                            break
-            except:
-                pyautogui.alert("Error")
-    def click4(self):
-        pyautogui.alert(text="x-1 veya x-8 haritasındayım. Onaylıyor musunuz ?", title="NRB SECURİTY", button="Onaylıyorum")
-        sleep(3)
-        leftClick(imagesearch(image="portal.PNG")[0]+14, imagesearch(image="portal.PNG")[1]+11)
-        sleep(2)
-        leftClick(imagesearch(image="exit.PNG")[0]+2, imagesearch(image="exit.PNG")[1]+6)
-
-
-app = QtWidgets.QApplication(sys.argv)
-pencere = Pencere()
-sys.exit(app.exec_())
+if __name__ == '__main__':
+    main()
