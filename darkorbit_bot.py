@@ -5,7 +5,9 @@ import pyautogui
 from pyautogui import leftClick
 from python_imagesearch.imagesearch import imagesearch
 from time import sleep, time
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 from threading import Thread
+from PyQt5.QtCore import QUrl
 import keyboard
 from random import randint
 
@@ -23,7 +25,8 @@ class DarkOrbitBot(QtWidgets.QWidget):
         super().__init__()
         self.loading_animation = LoadingAnimation()
         self.init_ui()
-
+        self.browser = QWebEngineView()
+        self.layout.addWidget(self.browser)
         self.login_status = False
         self.start_time = None
         self.darkorbit_username = None
@@ -46,6 +49,10 @@ class DarkOrbitBot(QtWidgets.QWidget):
         self.hesap_bilgileri_button.clicked.connect(self.hesap_bilgileri)
         self.layout.addWidget(self.hesap_bilgileri_button)
         self.hesap_bilgileri_button.setEnabled(False)
+        self.start_bot_button = QtWidgets.QPushButton('Botu Başlat')
+        self.start_bot_button.clicked.connect(self.start_bot)
+        self.layout.addWidget(self.start_bot_button)
+        self.start_bot_button.setEnabled(False)
 
         self.bot_buttons = QtWidgets.QWidget()
         self.bot_layout = QtWidgets.QHBoxLayout()
@@ -89,6 +96,7 @@ class DarkOrbitBot(QtWidgets.QWidget):
             self.sadece_kutu_button.setEnabled(True)
             self.tiklama_bot_button.setEnabled(True)
             self.test_button.setEnabled(True)
+            self.start_bot_button.setEnabled(True)
 
             self.start_time = time()
         else:
@@ -102,6 +110,14 @@ class DarkOrbitBot(QtWidgets.QWidget):
 
         self.darkorbit_username = kullanıcı_adı
         self.darkorbit_password = sifre
+
+    def start_bot(self):
+        if self.login_status:
+            # Tarayıcı penceresini oluşturun
+            self.browser.show()
+            self.browser.setUrl(QUrl("https://example.com"))  # İstediğiniz URL'yi buraya ekleyin
+        else:
+            self.info_label.setText('Önce giriş yapmalısınız.')
 
     def ultra(self):
         pyautogui.FAILSAFE = False
